@@ -3,7 +3,7 @@ import { v4 as uuidv4 } from 'uuid';
 
 const router = express.Router();
 
-const users = [
+let users = [
   {
     firstName: 'Emily',
     lastName: 'Brown',
@@ -61,6 +61,18 @@ router.get('/:id', (req, res) => {
   } else {
     res.send('User is not found');
   }
+});
+
+// delete the user
+router.delete('/:id', (req, res) => {
+  const { id } = req.params;
+  // jhane -> 123
+  // jane -> 345
+
+  // i need to delete the jhane. i use to his id and filter function following look like.
+  // the filter function return false value then delete the user
+  users = users.filter((user) => user.id !== id);
+  res.send('user deleted from the database');
 });
 
 export default router;
